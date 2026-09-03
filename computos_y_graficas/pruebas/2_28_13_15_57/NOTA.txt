@@ -1,0 +1,1 @@
+No se había configurado la cadena OUTPUT para esta simulación.
