@@ -1,0 +1,14 @@
+Pendientes:
+
+python3 $HOME/Repositories/tfm_desarrollo/py_analizers/draw_sim.py $HOME/simulaciones/v2x_malayos_exp2_20ms/5_15_9_48_6 $HOME/simulaciones/v2x_malayos_exp2_20ms/5_15_9_48_6 1 1000 1000 2 2412000000.0 50000000.0 5.55556 1000 0.67 0 2
+
+Realizadas:
+
+python3 $HOME/Repositories/tfm_desarrollo/py_analizers/draw_sim.py $HOME/simulaciones/scheduling_indonesios_mu0_bet/5_7_23_27_55 $HOME/simulaciones/scheduling_indonesios_mu0_bet/5_7_23_27_55 1 1000 1000 1 28000000000.0 300000000.0 0.27778 10 0.67 0 2
+python3 $HOME/Repositories/tfm_desarrollo/py_analizers/draw_sim.py $HOME/simulaciones/scheduling_indonesios_mu0_bet/5_7_23_29_36 $HOME/simulaciones/scheduling_indonesios_mu0_bet/5_7_23_29_36 1 1000 1000 1 28000000000.0 300000000.0 0.27778 10 0.67 0 2
+python3 $HOME/Repositories/tfm_desarrollo/py_analizers/draw_sim.py $HOME/simulaciones/scheduling_indonesios_mu0_bet/5_7_23_31_16 $HOME/simulaciones/scheduling_indonesios_mu0_bet/5_7_23_31_16 1 1000 1000 1 28000000000.0 300000000.0 0.27778 10 0.67 0 2
+python3 $HOME/Repositories/tfm_desarrollo/py_analizers/draw_sim.py $HOME/simulaciones/scheduling_indonesios_mu0_edf/5_7_23_32_57 $HOME/simulaciones/scheduling_indonesios_mu0_edf/5_7_23_32_57 1 1000 1000 1 28000000000.0 300000000.0 0.27778 10 0.67 0 2
+python3 $HOME/Repositories/tfm_desarrollo/py_analizers/draw_sim.py $HOME/simulaciones/scheduling_indonesios_mu0_edf/5_7_23_34_37 $HOME/simulaciones/scheduling_indonesios_mu0_edf/5_7_23_34_37 1 1000 1000 1 28000000000.0 300000000.0 0.27778 10 0.67 0 2
+python3 $HOME/Repositories/tfm_desarrollo/py_analizers/draw_sim.py $HOME/simulaciones/scheduling_indonesios_mu0_edf/5_7_23_36_18 $HOME/simulaciones/scheduling_indonesios_mu0_edf/5_7_23_36_18 1 1000 1000 1 28000000000.0 300000000.0 0.27778 10 0.67 0 2
+python3 $HOME/Repositories/tfm_desarrollo/py_analizers/draw_sim.py $HOME/simulaciones/scheduling_indonesios_mu0_edf/5_7_23_37_58 $HOME/simulaciones/scheduling_indonesios_mu0_edf/5_7_23_37_58 1 1000 1000 1 28000000000.0 300000000.0 0.27778 10 0.67 0 2
+python3 $HOME/Repositories/tfm_desarrollo/py_analizers/draw_sim.py $HOME/simulaciones/scheduling_indonesios_mu0_edf/5_7_23_39_39 $HOME/simulaciones/scheduling_indonesios_mu0_edf/5_7_23_39_39 1 1000 1000 1 28000000000.0 300000000.0 0.27778 10 0.67 0 2

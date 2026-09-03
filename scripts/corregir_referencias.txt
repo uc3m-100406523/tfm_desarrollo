@@ -1,0 +1,11 @@
+Corregir referencias:
+
+|-|-|
+|Cadena|Sustituir por|
+|-|-|
+|abstract={|%abstract={|
+|publisher={: |publisher={|
+|translator={|%translator={|
+| &| \&|
+| ;}|}|
+|-|-|

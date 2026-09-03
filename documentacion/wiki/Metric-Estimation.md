@@ -1,0 +1,10 @@
+As we have already mentioned, one of the key processes in our emulator is the resource allocation step. This step relies on the estimated metric for each RB/RBG and UE. There are countless of metric proposed in the state of the art. However, we have only implemented a subset of them, allowing future users to incorporate their own metrics:
+
+- First In First Out (FIFO): this metric does not rely on the Channel State Indicators, it just prioritize the packets in their arrival order.
+- Round Robin: Similarly, this metric gives the same priority to all UEs without taking into account their CSIs.
+- Blind Equal Throughput: this is another metric which ignores the UEs' channel state. The goal of this metric is to evenly provide the same throughput levels to all the UEs (if possible). It relies only on the previously provided throughput of all the UEs.
+- Proportional Fair: similarly to the previous metric, it tries to evenly distribute the throughput among the connected UEs. However, in this case it also tries to maximize the throughput of the UEs with good channel quality.
+- Max. Throughput: prioritizes the overall throughput provided by the eNB/gNB by granting transmission resources to UEs with higher channel quality.
+- Distributed Delay: the gaol is to fulfill the delay requirements of the individual users.
+
+Besides, we have also provided the emulator with user prioritization capabilities. We achieve this in a very simple manner: regardless the chosen metric, each UE has a prioritization level assigned (if user prioritization is enabled). Later, in each timestep, the estimated metric is multiplied by the prioritization level. This approach is extremely simple but it does the job. The user should, however, carefully choose this prioritization levels to fulfill its own requirements.

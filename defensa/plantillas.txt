@@ -1,0 +1,17 @@
+Lecture template
+https://www.overleaf.com/latex/templates/lecture-template/vffqsckgtgzs
+
+Plantilla Básica de una presentación Beamer en español
+https://www.overleaf.com/latex/templates/plantilla-basica-de-una-presentacion-beamer-en-espanol/sbddnswwfpfw
+
+UPC Beamer Template
+https://www.overleaf.com/latex/templates/upc-beamer-template/wywdgpnbstkw
+
+DTU Beamer template
+https://www.overleaf.com/latex/templates/dtu-beamer-template/pryyqtsrpmpb
+
+ETH Zürich ASL Presentation Template
+https://www.overleaf.com/latex/templates/eth-zurich-asl-presentation-template/smftzsgnrzhy
+
+Lund University Beamer Template
+https://www.overleaf.com/latex/templates/lund-university-beamer-template/fzvjyvwtpgfv

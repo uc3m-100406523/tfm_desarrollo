@@ -1,0 +1,203 @@
+% Organizaciones
+\newacronym{3gpp}{3GPP}{Third Generation Partnership Project}
+\newacronym{5gaa}{5GAA}{5G Automotive Association}
+\newacronym{aaa}{AAA}{American Automobile Association}
+\newacronym{etsi}{ETSI}{European Telecommunications Standards Institute}
+\newacronym{fcc}{FCC}{Federal Communications Commission}
+\newacronym{ieee}{IEEE}{Institute of Electrical and Electronics Engineers}
+\newacronym{ngmn}{NGMN}{Next Generation Mobile Networks Alliance}
+\newacronym{nhsta}{NHSTA}{National Highway Safety Transportation Administration}
+\newacronym{sae}{SAE}{Society of Automotive Engineers}
+
+% Técnicas de transmisión y protocolos
+\newacronym{amc}{AMC}{Adaptive Modulation and Coding}
+\newacronym{ca}{CA}{Carrier Aggregation}
+\newacronym{cdma}{CDMA}{Code Division Multiple Access}
+\newacronym{cdm}{CDM}{Code Division Multiplexing}
+\newacronym{comp}{CoMP}{Coordinated Multi Point}
+\newacronym{cp}{CP}{Cyclic Prefix}
+\newacronym{cqi}{CQI}{Channel Quality Indicator}
+\newacronym{csi}{CSI}{Channel State information}
+\newacronym{csmaca}{CSMA/CA Carrier sense Multiple Access/collision avoidance}
+\newacronym{dcc}{DCC}{Distributed-congestion-control}
+\newacronym{dci}{DCI}{Downlink Control Information}
+\newacronym{denb}{DeNB}{Donor eNB}
+\newacronym{dftsofdm}{DFT-s-OFDM}{Discrete Fourier Transform signature Orthogonal Frequency Division Multiplexing}
+\newacronym{dpsk}{DPSK}{Differential Phase-Shift Keying}
+\newacronym{fdd}{FDD}{Frequency Division Duplexing}
+\newacronym{fdma}{FDMA}{Frequency Division Multiple Access}
+\newacronym{fdm}{FDM}{Frequency Division Multiplexing}
+\newacronym{fstd}{FSTD}{Frequency Shift Time Diversity}
+\newacronym{gbr}{GBR}{Guaranteed bit-rate}
+\newacronym{gmsk}{GMSK}{Gaussian Minimum-Shift Keying}
+\newacronym{harq}{HARQ}{Hybrid Automatic Retransmission Request}
+\newacronym{hetnet}{HetNet}{Heterogeneous Network}
+\newacronym{icic}{ICIC}{Inter-Cell Interference Coordination}
+\newacronym{ip}{IP}{Internet Protocol}
+\newacronym{kpi}{KPI}{Key performance indicator}
+\newacronym{mac}{MAC}{medium Access control}
+\newacronym{mcs}{MCS}{Modulation and Coding Scheme}
+\newacronym{mimo}{MIMO}{Multiple Input Multiple Output}
+\newacronym{mimoota}{MIMO OTA}{MIMO Over-the-Air}
+\newacronym{miso}{MISO}{Multiple Input Single Output}
+\newacronym{mqam}{M-QAM}{M-ary Quadrature Amplitude Modulation}
+\newacronym{msk}{MSK}{Minimum-Shift Keying}
+\newacronym{noma}{NOMA}{Non-Orthogonal Multiple Access}
+\newacronym{ofdma}{OFDMA}{Orthogonal Frequency Division Multiple Access}
+\newacronym{ofdm}{OFDM}{Orthogonal Frequency Division Multiplexing}
+\newacronym{papr}{PAPR}{peak-to-average power ratio}
+\newacronym{pdbc}{PDBC}{Physical Downlink Broadcast Channel}
+\newacronym{pdcch}{PDCCH}{Physical Downlink Control Channel}
+\newacronym{pdcp}{PDCP}{Packet Data Control Protocol}
+\newacronym{pdsch}{PDSCH}{Physical Downlink Shared Channel}
+\newacronym{prb}{PRB}{Physical Resource Blocks}
+\newacronym{pucch}{PUCCH}{Physical Uplink Control Channel}
+\newacronym{pusch}{PUSCH}{Physical Uplink Shared Channel}
+\newacronym{qci}{QCI}{QoS Class Identifier}
+\newacronym{qpsk}{QPSK}{Quadrature Phase-Shift Keying}
+\newacronym{rbg}{RBG}{Resource Block Groups}
+\newacronym{rb}{RB}{Resource Block}
+\newacronym{re}{RE}{Resource Element}
+\newacronym{rlc}{RLC}{Radio Link Control}
+\newacronym{rn}{RN}{Relay Nodes}
+\newacronym{rrc}{RRC}{Radio Resource Control}
+\newacronym{rrm}{RRM}{Radio Resource Management}
+\newacronym{scfdma}{SC-FDMA}{Single Carrier Frequency Division Multiple Access}
+\newacronym{sdma}{SDMA}{Space Division Multiple Access}
+\newacronym{sdm}{SDM}{Space Division Multiplexing}
+\newacronym{sfbc}{SFBC}{Space-Frequency Block Coding}
+\newacronym{simo}{SIMO}{Single Input Multiple Output}
+\newacronym{siso}{SISO}{Single Input Single Output}
+\newacronym{sr}{SR}{Scheduling Request}
+\newacronym{ss}{SS}{Spread Spectrum}
+\newacronym{tdd}{TDD}{Time Division Duplexing}
+\newacronym{tdma}{TDMA}{Time Division Multiple Access}
+\newacronym{tdm}{TDM}{Time Division Multiplexing}
+\newacronym{tta}{TTA}{Throughput To Average}
+\newacronym{tti}{TTI}{Transmission Time Interval}
+
+% Conceptos de sistemas de comunicaciones
+\newacronym{bler}{BLER}{Block Error Rate}
+\newacronym{bs}{BS}{Base Station}
+\newacronym{ccdf}{CCDF}{Complementary Cumulative Distribution Function}
+\newacronym{cdf}{CDF}{Cumulative Distribution Function}
+\newacronym{cinr}{CINR}{Carrier-to-Interference-and-Noise Ratio}
+\newacronym{cn}{CN}{Core Network}
+\newacronym{cnr}{CNR}{Carrier-to-Noise Ratio}
+\newacronym{d2d}{D2D}{Device to Device}
+\newacronym{dl}{DL}{Downlink}
+\newacronym{dos}{DoS}{Denial of Service}
+\newacronym{dsrc}{DSRC}{Dedicated short-range Communications}
+\newacronym{gnss}{GNSS}{Global navigation satellite System}
+\newacronym{i2n2v}{I2N2V}{Infrastructure to Network to Vehicle}
+\newacronym{i2n}{I2N}{Infrastructure to Network}
+\newacronym{i2v}{I2V}{Infrastructure to Vehicle}
+\newacronym{los}{LOS}{Line-of-sight}
+\newacronym{m2m}{M2M}{Machine-to-Machine}
+\newacronym{mbb}{MBB}{Mobile broadband}
+\newacronym{mno}{MNO}{Mobile Network operator}
+\newacronym{mtc}{MTC}{Machine Type Communications}
+\newacronym{nlos}{NLOS}{Non-Line-of-sight}
+\newacronym{obu}{OBU}{On board unit}
+\newacronym{phy}{PHY}{Physical layer}
+\newacronym{plmn}{PLMN}{Public land Mobile Network}
+\newacronym{plr}{PLR}{Packet Loss Rate}
+\newacronym{qos}{QoS}{Quality of Service}
+\newacronym{ran}{RAN}{Radio Access Network}
+\newacronym{rat}{RAT}{Radio Access Technologies}
+\newacronym{ri}{RI}{Rank Indicator}
+\newacronym{rma}{RMa}{Rural Macro}
+\newacronym{rsrp}{RSRP}{Reference Signal Received Power}
+\newacronym{rsu}{RSU}{Road side unit}
+\newacronym{sdn}{SDN}{Software defined Network}
+\newacronym{sim}{SIM}{Subscriber identity module}
+\newacronym{sinr}{SINR}{Signal-to-Interference-and-Noise Ratio}
+\newacronym{snr}{SNR}{Signal-to-Noise Ratio}
+\newacronym{tbs}{TBS}{Transport Block Size}
+\newacronym{tv}{TV}{Television}
+\newacronym{ue}{UE}{User Equipment}
+\newacronym{uhf}{UHF}{Ultra High Frequency}
+\newacronym{ul}{UL}{Uplink}
+\newacronym{uma}{UMa}{Urban Macro}
+\newacronym{umi}{UMi}{Urban Micro}
+\newacronym{uplane}{U Plane}{User plane}
+\newacronym{usim}{USIM}{Universal subscriber identity module}
+\newacronym{wan}{WAN}{Wide area Network}
+
+% 3G/UMTS/4G/LTE/LTE-Advanced
+\newacronym{3g}{3G}{Third Generation of Mobile Telephony}
+\newacronym{4g}{4G}{Fourth Generation of Mobile Telephony}
+\newacronym{enb}{eNB}{evolved Node B}
+\newacronym{eps}{EPC}{Evolved Packet Core}
+\newacronym{eps}{EPS}{Evolved Packet System}
+\newacronym{eutran}{E-UTRAN}{Evolved Universal Terrestrial Radio Access Network}
+\newacronym{gw}{GW}{Gateway}
+\newacronym{imtadvanced}{IMT-Advanced}{International Mobile Telecommunications-Advanced}
+\newacronym{imt}{IMT}{International Mobile Telecommunications}
+\newacronym{lteadvanced}{LTE-Advanced}{Long Term Evolution-Advanced}
+\newacronym{lte}{LTE}{Long Term Evolution}
+\newacronym{mme}{MME}{Mobility Management Entity}
+\newacronym{pgw}{PGW}{PDN Gateway}
+\newacronym{sgw}{SGW}{Serving Gateway}
+\newacronym{utran}{UTRAN}{Universal Terrestrial Radio Access Network}
+
+% 5G
+\newacronym{5g}{5G}{Fifth Generation of Mobile Telephony}
+\newacronym{5gc}{5GC}{5G Core Network}
+\newacronym{5gs}{5GS}{5G System}
+\newacronym{amf}{AMF}{Access and Mobility management Function}
+\newacronym{cc}{CC}{Critical Communications}
+\newacronym{embb}{eMBB}{Enhanced Mobile Broadband}
+\newacronym{emtc}{eMTC}{Enhanced Machine Type Communication}
+\newacronym{gnbcu}{gNB-CU}{gNB-Central Unit}
+\newacronym{gnbdu}{gNB-DU}{gNB-Distributed Unit}
+\newacronym{gnb}{gNB}{5G Node B}
+\newacronym{miot}{mIoT}{Massive Internet of Things}
+\newacronym{mmtc}{mMTC}{Massive Machine Type Communications}
+\newacronym{nf}{NF}{Network Functions}
+\newacronym{ngran}{NG-RAN}{New Generation Radio Access Network}
+\newacronym{nr}{NR}{New Radio}
+\newacronym{nruu}{NR-Uu}{New Radio Uu}
+\newacronym{nsa}{NSA}{Non-Stand Alone}
+\newacronym{sa}{SA}{Stand-Alone}
+\newacronym{sba}{SBA}{Service-Based Architecture}
+\newacronym{upf}{UPF}{User Plane Function}
+\newacronym{urllc}{URLLC}{Ultra Reliable Low Latency Communications}
+
+% Otras tecnologías
+\newacronym{ar}{AR}{Augmented Reality}
+\newacronym{fikore}{FikoRE}{Framework for Immersive communication networK Optimization RAN Emulator}
+\newacronym{mec}{MEC}{Multi-access Edge Computing}
+\newacronym{nfv}{NFV}{Network Function Virtualization}
+\newacronym{nq}{NQ}{Netfilter Queue}
+\newacronym{vr}{VR}{Virtual Reality}
+\newacronym{xr}{XR}{eXtended Reality}
+
+% Planificación de paquetes (packet scheduling)
+\newacronym{bet}{BET}{Blind Equal Throughput}
+\newacronym{exp}{EXP}{Exponential proportional fairness}
+\newacronym{fdps}{FDPS}{Frequency Domain Packet Scheduler}
+\newacronym{fls}{FLS}{Frame Level Scheduler}
+\newacronym{lwdf}{LWDF}{Largest Weighted Delay First}
+\newacronym{mlwdf}{M-LWDF}{Modified LWDF}
+\newacronym{mt}{MT}{Maximum Throughput}
+\newacronym{pf}{PF}{Proportional Fair}
+\newacronym{pss}{PSS}{Priority Set Scheduler}
+\newacronym{rr}{RR}{Round Robin}
+\newacronym{sps}{SPS}{Semi persistent scheduling}
+\newacronym{tdps}{TDPS}{Time Domain Packet Scheduler}
+
+% Comunicaciones en entornos Vehiculares (C-V2X)
+\newacronym{cam}{CAM}{Cooperative Awareness Message}
+\newacronym{cits}{C-ITS}{Cooperative Intelligent Transport System}
+\newacronym{cv2x}{C-V2X}{Cellular Vehicle-to Everything}
+\newacronym{itsg5}{ITS-G5}{Intelligent Transport System \@5.9 GHz}
+\newacronym{its}{ITS}{Intelligent Transport System}
+\newacronym{ivi}{IVI}{In-Vehicle Infotainment}
+\newacronym{ltev2x}{LTE-V2X Long Term Evolution-Vehicle-to-Everything}
+\newacronym{v2b}{V2B}{Vehicle-to-Barrier}
+\newacronym{v2i}{V2I}{Vehicle-to-Infrastructure}
+\newacronym{v2p}{V2P}{Vehicle-to-Pedistrian}
+\newacronym{v2v}{V2V}{Vehicle-to-Vehicle}
+\newacronym{v2x}{V2X}{Vehicle to Everything}
+\newacronym{wave}{WAVE}{Wireless Access in Vehicular environments}
