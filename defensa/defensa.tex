@@ -639,7 +639,7 @@ Tutor/es: Ana García Armada}
 % \end{itemize}
 %
 % \begin{center}
-% \includegraphics[scale=0.15]{../memoria/imagenes/comunicaciones_moviles/cm_cap3_2_fixed.jpg}
+% \includegraphics[height=5.0cm]{../memoria/imagenes/comunicaciones_moviles/cm_cap3_2_fixed.jpg}
 % \end{center}
 % \end{frame}
 
@@ -1100,7 +1100,7 @@ $$B = \sum_i b_i$$
 % 	\end{itemize}
 %
 % 	\begin{center}
-% 	\includegraphics[scale=1.0]{../memoria/imagenes/3gpp_5g_system_overview/5g-fig2.png}
+% 	\includegraphics[height=5.0cm]{../memoria/imagenes/3gpp_5g_system_overview/5g-fig2.png}
 % 	\end{center}
 % }
 % \item Se usan canales físicos y señales físicas.
@@ -1140,7 +1140,7 @@ $$B = \sum_i b_i$$
 % 		\end{itemize}
 %
 % 		\begin{center}
-% 		\includegraphics[scale=1.0]{../memoria/imagenes/3gpp_5g_system_overview/5g-fig5.png}
+% 		\includegraphics[height=5.0cm]{../memoria/imagenes/3gpp_5g_system_overview/5g-fig5.png}
 % 		\end{center}
 % 	}
 % 	\item {
@@ -1151,7 +1151,7 @@ $$B = \sum_i b_i$$
 % 		\end{itemize}
 %
 % 		\begin{center}
-% 		\includegraphics[scale=1.0]{../memoria/imagenes/3gpp_5g_system_overview/5g-fig6.png}
+% 		\includegraphics[height=5.0cm]{../memoria/imagenes/3gpp_5g_system_overview/5g-fig6.png}
 % 		\end{center}
 % 	}
 % 	\end{itemize}
@@ -1534,6 +1534,749 @@ $$B = \sum_i b_i$$
 	\begin{itemize}
 	\item Permite estudiar directamente el rendimiento de una aplicación de 5G en un despliegue simulado.
 	\item Extensión de \textit{NS-3}, \textit{OpenAirInterface 5G-RAN}, \textit{Simu5G}, \textit{Polaris}, \textit{Keysight}, \textit{FikoRE}.
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\section{Emulador \textit{FikoRE}}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Básico}
+
+\begin{itemize}
+\item \textit{Framework for Immersive communication networK Optimization RAN Emulator} (\textit{FikoRE}).
+\item Emulador de nivel de sistema de la interfaz de radio de 5G.
+\item Recrea la interfaz de radio (PHY, MAC, PDCP/RLC).
+\end{itemize}
+\end{frame}
+
+\subsection{Características generales}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Características generales - Implementación}
+
+\begin{itemize}
+\item \textit{C++}
+\item \textit{Linux}
+\item {
+	Clases:
+	\begin{itemize}
+	\item {
+		Terminal de usuario (UE):
+		\begin{itemize}
+		\item PHY.
+		\item PDCP/RLC.
+		\item Movilidad del UE.
+		\item Manejo de paquetes (captura, generación).
+		\item Otros comportamientos del UE.
+		\end{itemize}
+	}
+	\item {
+		Estación base (gNB):
+		\begin{itemize}
+		\item MAC.
+		\end{itemize}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Características generales - Flujo de información}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/fikore_paper/fikore_paper2-001_es_pasos.png}
+\end{center}
+\end{frame}
+
+%% Diapositiva
+%\begin{frame}
+%\frametitle{Emulador \textit{FikoRE} - Características generales - Capacidades}
+%
+%\begin{itemize}
+%\item NR (PHY, MAC, PDCP/RLC).
+%\item {
+%	Red:
+%	\begin{itemize}
+%	\item Conexión UE a BS (una celda).
+%	\item No interacción con otras celdas.
+%	\item No comunicación con el núcleo de red.
+%	\end{itemize}
+%	
+%	\begin{center}
+%	\includegraphics[height=3.0cm]{../memoria/imagenes/fikore_doc/figures/XROffloadingExample_es.png}
+%
+%	\includegraphics[height=3.0cm]{../memoria/imagenes/fikore_doc/figures/XROffloadingSetup_es.png}
+%
+%	\includegraphics[height=3.0cm]{../computos_y_graficas/pruebas/2_28_19_1_40/ue/trajectory.png}
+%	\end{center}
+%}
+%\item {
+%	Interfaz de radio:
+%	\begin{itemize}
+%	\item Fenómenos de la transmisión inalámbrica:
+%	ruido, interferencia, atenuación, desvanecimiento lento, desvanecimiento rápido.
+%	\item Sistema celular:
+%	interferencia producida por otras células.
+%	\item Procesado de señal:
+%	modulación OFDM, técnicas multiantena.
+%	\item Otras técnicas avanzadas:
+%	HARQ, planificación de paquetes, adaptación de enlace, agregación de portadoras.
+%	\end{itemize}
+%}
+%\end{itemize}
+%\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Características generales - Capacidades (I)}
+
+\begin{itemize}
+\item NR (PHY, MAC, PDCP/RLC).
+\item {
+	Red:
+	\begin{itemize}
+	\item Conexión UE a BS (una celda).
+	\item No interacción con otras celdas.
+	\item No comunicación con el núcleo de red.
+	\end{itemize}
+	
+	\begin{center}
+	\includegraphics[height=2.5cm]{../memoria/imagenes/fikore_doc/figures/XROffloadingExample_es.png}
+
+	\includegraphics[height=2.5cm]{../memoria/imagenes/fikore_doc/figures/XROffloadingSetup_es.png}
+	\end{center}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Características generales - Capacidades (II)}
+
+\begin{itemize}
+\item {
+	Red:
+	\begin{center}
+	\includegraphics[height=7.0cm]{../computos_y_graficas/pruebas/2_28_19_1_40/ue/trajectory.png}
+	\end{center}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Características generales - Capacidades (III)}
+
+\begin{itemize}
+\item {
+	Interfaz de radio:
+	\begin{itemize}
+	\item Fenómenos de la transmisión inalámbrica:
+	ruido, interferencia, atenuación, desvanecimiento lento, desvanecimiento rápido.
+	\item Sistema celular:
+	interferencia producida por otras células.
+	\item Procesado de señal:
+	modulación OFDM, técnicas multiantena.
+	\item Otras técnicas avanzadas:
+	HARQ, planificación de paquetes, adaptación de enlace, agregación de portadoras.
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+\subsection{Detalles particulares}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Validación del funcionamiento}
+
+\begin{itemize}
+\item {
+	Varios experimentos en las fuentes:
+	\begin{itemize}
+	\item UE era estático.
+	\item Línea de visión.
+	\end{itemize}
+}
+\item Es necesario validar comportamientos.
+\end{itemize}
+\end{frame}
+
+%% Diapositiva
+%\begin{frame}
+%\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Relativas a la ejecución}
+%
+%\begin{itemize}
+%\item {
+%	Duplicidad de instancias (UL/DL).
+%	\begin{center}
+%	\includegraphics[height=5.0cm]{../memoria/imagenes/fikore_doc/figures/EmuImplementation.png}
+%	\end{center}
+%}
+%\item {
+%	Sincronía de la ejecución.
+%	\begin{itemize}
+%	\item Período de ejecución (1 ms por defecto).
+%	\item UE y capa MAC (gNB) consecutivamente.
+%	\end{itemize}
+%}
+%\item {
+%	Módulo \textit{Netfilter Queue}.
+%	\begin{itemize}
+%	\item API del espacio de usuario de \textit{Linux}.
+%	\item Acceder a los paquetes que han sito encolados por el cortafuegos (\textit{firewall}).
+%	\end{itemize}
+%}
+%\end{itemize}
+%\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Relativas a la ejecución (I)}
+
+\begin{itemize}
+\item {
+	Duplicidad de instancias (UL/DL).
+	\begin{center}
+	\includegraphics[height=4.5cm]{../memoria/imagenes/fikore_doc/figures/EmuImplementation.png}
+	\end{center}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Relativas a la ejecución (II)}
+
+\begin{itemize}
+\item {
+	Sincronía de la ejecución.
+	\begin{itemize}
+	\item Período de ejecución (1 ms por defecto).
+	\item UE y capa MAC (gNB) consecutivamente.
+	\end{itemize}
+}
+\item {
+	Módulo \textit{Netfilter Queue}.
+	\begin{itemize}
+	\item API del espacio de usuario de \textit{Linux}.
+	\item Acceder a los paquetes que han sito encolados por el cortafuegos (\textit{firewall}).
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+%% Diapositiva
+%\begin{frame}
+%\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación}
+%
+%\begin{itemize}
+%\item {
+%	Tasa de asignación de recursos de radio
+%	\begin{itemize}
+%	\item RRM una vez por período, no por \textit{slot}. $\rightarrow$ Reduce la exactitud cuando el UE se desplace a gran velocidad.
+%	\end{itemize}
+%}
+%\item {
+%	Ruido e interferencia
+%	\begin{itemize}
+%	\item UE estima el ruido y la interferencia al comienzo de una simulación. $\rightarrow$ Anula la varianza.
+%	\end{itemize}
+%}
+%\item {
+%	Velocidad máxima en \textit{Uma}
+%	\begin{itemize}
+%	\item \textasciitilde 0.8 m/s $\rightarrow$ No es posible simular UE a gran velocidad en un entorno urbano.
+%	\end{itemize}
+%}
+%\item {
+%	Modelos de canal
+%	\begin{itemize}
+%	\item {
+%		Especificación 3GPP 38.901.
+%		
+%		\begin{center}
+%		\includegraphics[height=5.0cm]{../memoria/imagenes/fikore_doc/figures/ModelsPHY.png}
+%		\end{center}
+%	}
+%	\item {
+%		Forma:
+%		\begin{itemize}
+%		\item diversos efectos: atenuación, desvanecimiento lento, desvanecimiento rápido
+%		\item forma estadística
+%		\item variables de entrada (distancia del UE a la gNB, anchura de la calle, altura de la gNB, etc.)
+%		\item estimación de los parámetros que afectarán a la calidad de la transmisión (SINR, latencia, etc.)
+%		\end{itemize}
+%		
+%		\begin{center}
+%			\includegraphics[height=5.0cm]{../memoria/imagenes/3gpp_ts_38901/TS_38901_extracto_1.png}
+%		
+%			\includegraphics[height=5.0cm]{../memoria/imagenes/3gpp_ts_38901/TS_38901_extracto_2.png}
+%		\end{center}
+%	}
+%	\item {
+%		Calidad:
+%		\begin{itemize}
+%		\item Otros modelos: \textit{IEEE}, \textit{COST}, \textit{Nokia}, \textit{Ericsson}, \textit{Huawei}, etc.
+%		\item Precisión necesaria para 5G $<$ \textit{FikoRE} $<$ despliegue real profesional.
+%		\end{itemize}
+%	}
+%	\end{itemize}
+%}
+%\item {
+%	Efecto Doppler:
+%	\begin{itemize}
+%	\item {
+%		Importancia:
+%		\begin{itemize}
+%		\item Fenómeno determinante en cuando el UE se desplaza a gran velocidad en entornos urbanos.
+%		\item Se relaciona con el multitrayecto (canal variante en el tiempo y la frecuencia).
+%		\end{itemize}
+%	}
+%	\item {
+%		Código:
+%		\begin{itemize}
+%		\item Variables: \textit{doppler\_f}, \textit{tc}, \textit{min\_sinr\_update}, \textit{sinr\_period}, \textit{update\_sinr}.
+%		\item Métodos: \textit{init\_update\_rates()}, \textit{estimate\_channel\_state()}.
+%		\end{itemize}
+%	}
+%	\item {
+%		\begin{center}
+%		\includegraphics[height=5.0cm]{../memoria/imagenes/elaboracion_propia/ep_esquema_del_emulador.jpg}
+%		
+%		\includegraphics[height=5.0cm]{../memoria/imagenes/fikore_doc/figures/PHYFlow_es.png}
+%		\end{center}
+%	}
+%	\item {
+%		Simulaciones:
+%		\begin{itemize}
+%		\item \textit{Validación - Efecto Doppler (conjunto 1)}
+%		\item \textit{Validación - Efecto Doppler (conjunto 2)}
+%		\item \textit{Validación - Efecto Doppler (conjunto 3)}
+%		\item \textit{Validación - Efecto Doppler (conjunto 4)}
+%		\item \textit{Validación - Efecto Doppler (conjunto 5)}
+%		\end{itemize}
+%	}
+%	\item UE que se alejaba de la gNB a la misma velocidad.
+%	\item Velocidad creciente.
+%	\item SINR similar.
+%	\item Distinta precisión temporal (\textit{period}).
+%	\item Distinta tasa de reporte de datos (\textit{log\_freq}).
+%	\item Distinta tasa de actualización de parámetros de CQI (\textit{cqi\_period}, \textit{ri\_period}).
+%	\item Las velocidades altas no suponen un gran cambio en MCS, tasa binaria, RI, RSRP, SINR o CQI.
+%	\item AMC permiten mantener las mismas tasas pese al incremento de velocidad.
+%	\item Cambios achacables a peculiaridades estadísticas (tráfico generado, trayectoria seguida, etc.) del único UE simulado.
+%	\item {
+%		\begin{center}
+%		\includegraphics[height=5.0cm]{../comparaciones/validacion_doppler_conjunto2/ue/ul_agg_throughput_multi_sim.png}
+%		
+%		\includegraphics[height=5.0cm]{../comparaciones/validacion_doppler_conjunto2/ue/dl_agg_throughput_multi_sim.png}
+%		
+%		\includegraphics[height=5.0cm]{../comparaciones/validacion_doppler_conjuntos_1_y_2/ue/ul_agg_throughput_multi_sim.png}
+%		
+%		\includegraphics[height=5.0cm]{../comparaciones/validacion_doppler_conjuntos_1_y_2/ue/dl_agg_throughput_multi_sim.png}
+%		
+%		\includegraphics[height=5.0cm]{../comparaciones/validacion_doppler_conjuntos_1_y_2/ue/rul_3d_hist_all_ue_multi.png_cropped.png}
+%		
+%		\includegraphics[height=5.0cm]{../comparaciones/validacion_doppler_conjuntos_1_y_2/ue/rdl_3d_hist_all_ue_multi.png_cropped.png}
+%		\end{center}
+%	}
+%	\end{itemize}
+%}
+%\item {
+%	Granularidad temporal
+%	\begin{itemize}
+%	\item {
+%		Simulaciones:
+%		\begin{itemize}
+%		\item \textit{Validación - Granularidad}
+%		\end{itemize}
+%	}
+%	\item Distinta precisión de la simulación.
+%	\item Cálculo de los parámetros posible.
+%	\item Distinta tasa binaria
+%	\item Mayor tasa, $\rightarrow$ Bloques de menores dimensiones, $\rightarrow$ Evita picos de mayor tasa.
+%	\item {
+%		\begin{center}
+%		\includegraphics[height=5.0cm]{../comparaciones/validacion_granularidad/ue/rdl_3d_hist_all_ue_multi.png_cropped.png}
+%		
+%		\includegraphics[height=5.0cm]{../comparaciones/validacion_granularidad/ue/dl_agg_throughput_multi_sim.png}
+%		\end{center}
+%	}
+%	\end{itemize}
+%}
+%\end{itemize}
+%\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (I)}
+
+\begin{itemize}
+\item {
+	Tasa de asignación de recursos de radio
+	\begin{itemize}
+	\item RRM una vez por período, no por \textit{slot}. $\rightarrow$ Reduce la exactitud cuando el UE se desplace a gran velocidad.
+	\end{itemize}
+}
+\item {
+	Ruido e interferencia
+	\begin{itemize}
+	\item UE estima el ruido y la interferencia al comienzo de una simulación. $\rightarrow$ Anula la varianza.
+	\end{itemize}
+}
+\item {
+	Velocidad máxima en \textit{Uma}
+	\begin{itemize}
+	\item $\textasciitilde 0.8$ m/s $\rightarrow$ No es posible simular UE a gran velocidad en un entorno urbano.
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (II)}
+
+\begin{itemize}
+\item {
+	Modelos de canal
+	\begin{itemize}
+	\item {
+		Especificación 3GPP 38.901.
+		
+		\begin{center}
+		\includegraphics[height=6.0cm]{../memoria/imagenes/fikore_doc/figures/ModelsPHY.png}
+		\end{center}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (III)}
+
+\begin{itemize}
+\item {
+	Modelos de canal
+	\begin{itemize}
+	\item {
+		Forma:
+		\begin{itemize}
+		\item Diversos efectos: atenuación, desvanecimiento lento, desvanecimiento rápido
+		\item Forma estadística
+		\item Variables de entrada (distancia del UE a la gNB, anchura de la calle, altura de la gNB, etc.)
+		\item Estimación de los parámetros que afectarán a la calidad de la transmisión (SINR, latencia, etc.).
+		\end{itemize}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (IV)}
+
+\begin{itemize}
+\item {
+	Modelos de canal
+	\begin{itemize}
+	\item {
+		Forma:
+		\begin{center}
+		\includegraphics[height=6.0cm]{../memoria/imagenes/3gpp_ts_38901/TS_38901_extracto_1.png}
+		\end{center}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (V)}
+
+\begin{itemize}
+\item {
+	Modelos de canal
+	\begin{itemize}
+	\item {
+		Forma:
+		\begin{center}
+		\includegraphics[height=5.0cm]{../memoria/imagenes/3gpp_ts_38901/TS_38901_extracto_2.png}
+		\end{center}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (VI)}
+
+\begin{itemize}
+\item {
+	Modelos de canal
+	\begin{itemize}
+	\item {
+		Calidad:
+		\begin{itemize}
+		\item Otros modelos: \textit{IEEE}, \textit{COST}, \textit{Nokia}, \textit{Ericsson}, \textit{Huawei}, etc.
+		\item Precisión necesaria para 5G $<$ \textit{FikoRE} $<$ despliegue real profesional.
+		\end{itemize}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (VII)}
+
+\begin{itemize}
+\item {
+	Efecto Doppler:
+	\begin{itemize}
+	\item {
+		Importancia:
+		\begin{itemize}
+		\item Fenómeno determinante en cuando el UE se desplaza a gran velocidad en entornos urbanos.
+		\item Se relaciona con el multitrayecto (canal variante en el tiempo y la frecuencia).
+		\end{itemize}
+	}
+	\item {
+		Código:
+		\begin{itemize}
+		\item Variables: \textit{doppler\_f}, \textit{tc}, \textit{min\_sinr\_update}, \textit{sinr\_period}, \textit{update\_sinr}.
+		\item Métodos: \textit{init\_update\_rates()}, \textit{estimate\_channel\_state()}.
+		\end{itemize}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (VIII)}
+
+\begin{itemize}
+\item {
+	Efecto Doppler:
+	\begin{center}
+	\includegraphics[height=3.0cm]{../memoria/imagenes/elaboracion_propia/ep_esquema_del_emulador.jpg}
+	
+	\includegraphics[height=3.5cm]{../memoria/imagenes/fikore_doc/figures/PHYFlow_es.png}
+	\end{center}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (IX)}
+
+\begin{itemize}
+\item {
+	Efecto Doppler:
+	\begin{itemize}
+	\item {
+		Simulaciones:
+		\begin{itemize}
+		\item \textit{Validación - Efecto Doppler (conjunto 1)}
+		\item \textit{Validación - Efecto Doppler (conjunto 2)}
+		\item \textit{Validación - Efecto Doppler (conjunto 3)}
+		\item \textit{Validación - Efecto Doppler (conjunto 4)}
+		\item \textit{Validación - Efecto Doppler (conjunto 5)}
+		\end{itemize}
+	}
+	\item UE que se alejaba de la gNB a la misma velocidad.
+	\item Velocidad creciente.
+	\item SINR similar.
+	\item Distinta precisión temporal (\textit{period}).
+	\item Distinta tasa de reporte de datos (\textit{log\_freq}).
+	\item Distinta tasa de actualización de parámetros de CQI (\textit{cqi\_period}, \textit{ri\_period}).
+	\item Las velocidades altas no suponen un gran cambio en MCS, tasa binaria, RI, RSRP, SINR o CQI.
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (X)}
+
+\begin{itemize}
+\item {
+	Efecto Doppler:
+	\begin{itemize}
+	\item AMC permiten mantener las mismas tasas pese al incremento de velocidad.
+	\item Cambios achacables a peculiaridades estadísticas (tráfico generado, trayectoria seguida, etc.) del único UE simulado.
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (XI)}
+
+\begin{itemize}
+\item {
+	Efecto Doppler:
+	\begin{itemize}
+	\item {
+		\begin{center}
+		\includegraphics[height=5.0cm]{../comparaciones/validacion_doppler_conjunto2/ue/ul_agg_throughput_multi_sim.png}
+		\end{center}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (XII)}
+
+\begin{itemize}
+\item {
+	Efecto Doppler:
+	\begin{itemize}
+	\item {
+		\begin{center}
+		\includegraphics[height=5.0cm]{../comparaciones/validacion_doppler_conjunto2/ue/dl_agg_throughput_multi_sim.png}
+		\end{center}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (XIII)}
+
+\begin{itemize}
+\item {
+	Efecto Doppler:
+	\begin{itemize}
+	\item {
+		\begin{center}
+		\includegraphics[height=5.0cm]{../comparaciones/validacion_doppler_conjuntos_1_y_2/ue/ul_agg_throughput_multi_sim.png}
+		\end{center}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (XIV)}
+
+\begin{itemize}
+\item {
+	Efecto Doppler:
+	\begin{itemize}
+	\item {
+		\begin{center}
+		\includegraphics[height=5.0cm]{../comparaciones/validacion_doppler_conjuntos_1_y_2/ue/dl_agg_throughput_multi_sim.png}
+		\end{center}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (XV)}
+
+\begin{itemize}
+\item {
+	Efecto Doppler:
+	\begin{itemize}
+	\item {
+		\begin{center}
+		\includegraphics[height=7.0cm]{../comparaciones/validacion_doppler_conjuntos_1_y_2/ue/rul_3d_hist_all_ue_multi.png_cropped.png}
+		\end{center}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (XVI)}
+
+\begin{itemize}
+\item {
+	Efecto Doppler:
+	\begin{itemize}
+	\item {
+		\begin{center}
+		\includegraphics[height=7.0cm]{../comparaciones/validacion_doppler_conjuntos_1_y_2/ue/rdl_3d_hist_all_ue_multi.png_cropped.png}
+		\end{center}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (XVII)}
+
+\begin{itemize}
+\item {
+	Granularidad temporal
+	\begin{itemize}
+	\item {
+		Simulaciones:
+		\begin{itemize}
+		\item \textit{Validación - Granularidad}
+		\end{itemize}
+	}
+	\item Distinta precisión de la simulación.
+	\item Cálculo de los parámetros posible.
+	\item Distinta tasa binaria
+	\item Mayor tasa, $\rightarrow$ Bloques de menores dimensiones, $\rightarrow$ Evita picos de mayor tasa.
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Emulador \textit{FikoRE} - Detalles particulares - Asunciones en la simulación (XVIII)}
+
+\begin{itemize}
+\item {
+	Granularidad temporal
+	\begin{itemize}
+	\item {
+		\begin{center}
+		\includegraphics[height=5.0cm]{../comparaciones/validacion_granularidad/ue/rdl_3d_hist_all_ue_multi.png_cropped.png}
+		\includegraphics[height=2.5cm]{../comparaciones/validacion_granularidad/ue/dl_agg_throughput_multi_sim.png}
+		\end{center}
+	}
 	\end{itemize}
 }
 \end{itemize}
