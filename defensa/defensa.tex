@@ -6078,8 +6078,6 @@ Portadora de 100 MHz (Mbps) & 285.72 & 142.86 \\
 \includegraphics[height=4.0cm]{../memoria/imagenes/v2x_japoneses/v2x_japoneses-004.png}
 \end{center}
 \end{frame}
-\end{center}
-\end{frame}
 
 % Diapositiva
 \begin{frame}
@@ -6629,6 +6627,230 @@ UL-2Tx (100 MHz) & 0.06 & 0.86 & 3.33 & 14.30 & 37.00 & 9.40 \\
 \begin{center}
 \includegraphics[height=7.0cm]{../comparaciones/v2x_japoneses_exp3_100mhz/ue/eul_3d_hist_all_ue_multi.png_cropped.png}
 \end{center}
+\end{frame}
+
+
+
+
+
+\section{Conclusiones}
+
+\subsection{Emulación de la interfaz de radio de 5G}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Conclusiones - Emulación de NR}
+
+\begin{itemize}
+\item 5G.
+\item Emulación y simulación NR.
+\item {
+	Emulador \textit{FikoRE}.
+	\begin{itemize}
+	\item Tráfico real.
+	\item En tiempo real.
+	\item Modelos adecuados.
+	\item Escalable.
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+\subsection{Planificación de paquetes}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{Conclusiones - \textit{Packet scheduling}}
+%
+% \begin{itemize}
+% \item {
+% 	Planificación de paquetes:
+% 	\begin{itemize}
+% 	\item Determinante en las prestaciones: tasa binaria, latencia, justicia, fidelidad, etc.
+% 	\item Distintas métricas para disintos propósitos.
+% 	\end{itemize}
+% }
+% \item {
+% 	Simulaciones:
+% 	\begin{itemize}
+% 	\item {
+% 		Distintas métricas para distintos despliegues de celdas y distintos tipos de tráfico:
+% 		\begin{itemize}
+% 		\item Distintas prestaciones.
+% 		\item SINR, RSRP, CQI no varían entre métricas.
+% 		\item MT maximiza la tasa, empeora la justicia.
+% 		\item PF hace un balance de tasa y justicia.
+% 		\item 5G hace que sus rendimientos no sean tan distintos en 5G como lo son en LTE.
+% 		\item EDF mejora con el número de UE, muy mala con pocos UE.
+% 		\item BET, FIFO, LWDF, RR no muestran ventajas ni inconvenientes.
+% 		\item Mayores ganancias en despliegues urbanos.
+% 		\item Balance entre las cualidades de cada métrica (tasa, justicia, etc.).
+% 		\item Métricas sin QoS (MT, LWDF, FIFO, EDF, BET, PF) dan lugar a latencias grandes, en especial RR.
+% 		\item Métricas con QoS (M-LWDF) garantizan la entrega del paquete en un tiempo razonable (0.1 s).
+% 		\end{itemize}
+% 	}
+% 	\item {
+% 		Comparar el otro escenario con \textit{FikoRE}:
+% 		\begin{itemize}
+% 		\item Para latencia aceptable, métricas con criterios de QoS: M-LWDF, \textit{TP-Delay}.
+% 		\item M-LWDF mostró peor rendimiento $\rightarrow$ Necesario configurarla.
+% 		\item Métricas con criterios de tasa binaria o continuidad de servicio (BET, RR, M-LWDF, EDF, MT, PF) tienen menor error.
+% 		\item Métricas con criterios de latencia (LWDF) o son muy sencillas (FIFO) tienen más tasa de error en el escenario urbano propuesto.
+% 		\item FIFO, por su sencillez, y LWDF, por estar mal configurada dieron peores prestaciones de latencia $\rightarrow$ Necesario configurarla.
+% 		\item MT, BET, EDF y PF dan buenas prestaciones de latencia, pero RR es muy mala, como cabía esperar.
+% 		\end{itemize}
+% 	}
+% 	\end{itemize}
+% }
+% \end{itemize}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Conclusiones - \textit{Packet scheduling} (I)}
+
+\begin{itemize}
+\item {
+	Planificación de paquetes:
+	\begin{itemize}
+	\item Determinante en las prestaciones: tasa binaria, latencia, justicia, fidelidad, etc.
+	\item Distintas métricas para disintos propósitos.
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Conclusiones - \textit{Packet scheduling} (II)}
+
+\begin{itemize}
+\item {
+	Simulaciones:
+	\begin{itemize}
+	\item {
+		Distintas métricas para distintos despliegues de celdas y distintos tipos de tráfico:
+		\begin{itemize}
+		\item Distintas prestaciones.
+		\item SINR, RSRP, CQI no varían entre métricas.
+		\item MT maximiza la tasa, empeora la justicia.
+		\item PF hace un balance de tasa y justicia.
+		\item 5G hace que sus rendimientos no sean tan distintos en 5G como lo son en LTE.
+		\item EDF mejora con el número de UE, muy mala con pocos UE.
+		\item BET, FIFO, LWDF, RR no muestran ventajas ni inconvenientes.
+		\item Mayores ganancias en despliegues urbanos.
+		\item Balance entre las cualidades de cada métrica (tasa, justicia, etc.).
+		\item Métricas sin QoS (MT, LWDF, FIFO, EDF, BET, PF) dan lugar a latencias grandes, en especial RR.
+		\item Métricas con QoS (M-LWDF) garantizan la entrega del paquete en un tiempo razonable (0.1 s).
+		\end{itemize}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Conclusiones - \textit{Packet scheduling} (III)}
+
+\begin{itemize}
+\item {
+	Simulaciones:
+	\begin{itemize}
+	\item {
+		Comparar el otro escenario con \textit{FikoRE}:
+		\begin{itemize}
+		\item Para latencia aceptable, métricas con criterios de QoS: M-LWDF, \textit{TP-Delay}.
+		\item M-LWDF mostró peor rendimiento $\rightarrow$ Necesario configurarla.
+		\item Métricas con criterios de tasa binaria o continuidad de servicio (BET, RR, M-LWDF, EDF, MT, PF) tienen menor error.
+		\item Métricas con criterios de latencia (LWDF) o son muy sencillas (FIFO) tienen más tasa de error en el escenario urbano propuesto.
+		\item FIFO, por su sencillez, y LWDF, por estar mal configurada dieron peores prestaciones de latencia $\rightarrow$ Necesario configurarla.
+		\item MT, BET, EDF y PF dan buenas prestaciones de latencia, pero RR es muy mala, como cabía esperar.
+		\end{itemize}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+\subsection{Comunicaciones en entornos vehiculares}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Conclusiones - C-V2X}
+
+\begin{itemize}
+\item {
+	C-V2X:
+	\begin{itemize}
+	\item Caso atractivo.
+	\item Iniciativas. $\rightarrow$ 5G-PPP.
+	\item Estándares. $\rightarrow$ 3GPP.
+	\end{itemize}
+}
+\item {
+	Simulaciones:
+	\begin{itemize}
+	\item {
+		Desplazamiento del vehículo, pérdida de señal.
+		\begin{itemize}
+		\item Distancia a la gNB, $\rightarrow$ Empeora el canal.
+		\item Numerologías, $\rightarrow$ Mayores índices mejoran la calidad del canal.
+		\item 5G atiende al multitrayecto y la dispersión Doppler. $\rightarrow$ No contribuyen a la latencia.
+		\item Los traspasos sí contribuyen a la latencia y la pérdidade paquetes.
+		\end{itemize}
+	}
+	\item {
+		MIMO en dos configuraciones distintas, distintos despliegues.
+		\begin{itemize}
+		\item Multiantena empeora el canal. $\rightarrow$ La diversidad busca mejorar la detección.
+		\item Multiantena mejora la tasa binaria.
+		\item El UE cambia entre los modos de \textit{capacidad} y \textit{diversidad}.
+		\item Latencia no variaba.
+		\item Latencia. $\rightarrow$ Malas condiciones de propagación.
+		\item Mejoras con la portadora de 100 MHz. $\rightarrow$ Mayor ancho de banda.
+		\end{itemize}
+	}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+\subsection{Desarrollo de 5G}
+
+% Diapositiva
+\begin{frame}
+\frametitle{Conclusiones - Desarrollo de 5G}
+
+\begin{itemize}
+\item {
+	Desarrollo de 5G:
+	\begin{itemize}
+	\item Heterogéneo.
+	\item Independiente.
+	\item {
+		Flexibilidad es clave:
+		\begin{itemize}
+		\item \textit{FikoRE} imitar, expandir.
+		\item Resolver un caso, y también llevarlo a otros ámbitos.
+		\end{itemize}
+	}
+	\end{itemize}
+}
+\item {
+	Aplicaciones:
+	\begin{itemize}
+	\item {
+		Demostrar realizabilidad. $\rightarrow$ \textit{FikoRE}:
+		\begin{itemize}
+		\item Emulación de distintos tipos de tráfico.
+		\item Visualización de su servicio.
+		\item Análisis de los aspectos del despliegue.
+		\end{itemize}
+	}
+	\end{itemize}
+}
+\end{itemize}
 \end{frame}
 
 
