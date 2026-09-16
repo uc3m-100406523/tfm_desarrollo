@@ -2286,6 +2286,1875 @@ $$B = \sum_i b_i$$
 
 
 
+\section{Caso de uso: planificación de paquetes (\textit{packet scheduling})}
+
+\subsection{Fundamentos de planificación de paquetes}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Fundamentos - Básico}
+
+\begin{itemize}
+\item Asignación de los recursos de radio a los distintos UE.
+\item Implementada en la capa MAC y que lleva a cabo la gNB.
+\item UL y DL.
+\item Funcionalidad muy determinante.
+\item CQI.
+\item Otros criterios: QoS, estado de los búferes de datos de cada UE, etc.
+\item Se implementa como protocolos.
+\item Distintos algoritmos propuestos en la literatura.
+\item 3GPP no especifica, lo deja al criterio de los proveedores.
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Fundamentos - Proceso}
+
+\begin{columns}[onlytextwidth]
+\begin{column}{0.45\textwidth}
+\begin{itemize}
+\item AMC.
+\item OFDM.
+\item {
+	Métricas:
+	$$
+	m_{j, k} = \max_i \lbrace m_{i, k} \rbrace
+	$$
+}
+\item Nuevas técnicas: agregación de portadoras, multiplexación espacial, ...
+\end{itemize}
+\end{column}
+
+\begin{column}{0.55\textwidth}
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-197.png}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\subsection{Planificación de paquetes en \textit{FikoRE}}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Emulador}
+
+\begin{itemize}
+\item Métricas: FIFO (0), BET (1), EDF (2), LWDF (3), MT (4), RR (5), PF (6).
+\item {
+	Nueva métrica: M-LWDF (7)
+	$$
+	m_{i, k}^{M-LWDF} = \alpha_i D_{HOL, i} \cdot \frac {d_{k}^i (t)} {\bar{R^i} (t-1)}
+	$$
+}
+\end{itemize}
+\end{frame}
+
+\subsection{Comparación simple de métricas con \textit{FikoRE}}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 1 - Descripción}
+
+\begin{itemize}
+\item {
+	Simulaciones:
+	\begin{itemize}
+	\item \textit{Caso de uso (VII): packet scheduling (iniciales)}
+	\end{itemize}
+}
+\item Distintas métricas: RR, FIFO, BET, EDF, LWDF, MT, PF
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 1 - Resultados}
+
+\begin{center}
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_iniciales/ue/dl_ase_multi_sim.png}
+
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_iniciales/ue/ul_ase_multi_sim.png}
+\end{center}
+\end{frame}
+
+\subsection{Comparación de métricas en LTE y en 5G}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - General}
+
+\begin{itemize}
+\item Análisis de las métricas más relevantes
+\item {
+	Emulador de nivel de sistema, \textit{LTE-Sim}
+	\begin{itemize}
+	\item Red móvil de LTE (E-UTRAN, EPS).
+	\item Varias celdas.
+	\item Varios usuarios móviles.
+	\item QoS.
+	\item Traspaso entre celdas.
+	\item Planificación de paquetes.
+	\item AMC.
+	\item CQI.
+	\item Reutilización de frecuencias.
+	\item Representa la capa física mediante un modelo analítico.
+	\end{itemize}
+}
+\item {
+	Simulaciones:
+	\begin{itemize}
+	\item \textit{Caso de uso (X): packet scheduling (italianos)}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+%% Diapositiva
+%\begin{frame}
+%\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Experimento propuesto}
+%
+%\begin{itemize}
+%\item Métricas: MT, PF, TTA y PF-PF.
+%\item 19 celdas.
+%\item 20 UE a 100 UE (aproximadamente, de 1 UE a 20 UE por celda).
+%\item Ruta aleatoria.
+%\item 30 km/h.
+%\item Fuente de búfer infinito en el enlace descendente para cada UE.
+%\item
+%Duración de la simulación $\rightarrow$ 100 s.
+%\item
+%Detalles físicos $\rightarrow$
+%Frecuencia portadora: 2GHz;
+%Ancho de banda para DL: 10 MHz;
+%Símbolos por TTI: 14;
+%Longitud de subtrama: 1 ms;
+%Subportadoras por RB: 12;
+%Espaciado de subportadoras: 15 kHz;
+%Esquema de reutilización de frecuencia: clústeres de cuatro celdas;
+%Potencia de transmisión: 43 dBm uniformemente distribuidos entre subcanales;
+%Modelo de propagación: Macrocelda urbana (UMa).
+%\item
+%Adaptación de enlace $\rightarrow$
+%Modulación: QPSK, 16QAM y 64QAM con todas las tasas de codificación disponibles;
+%Objetivo de BLER: $10^{-1}$.
+%\item
+%Control de encabezado $\rightarrow$
+%RTP/UDP/IP con compresión ROCH: 3 bytes;
+%MAC y RLC: 5 bytes;
+%PDCP: 2 bytes;
+%CRC: 3 bytes;
+%PHY: 3 símbolos.
+%\item
+%Diseño de celda $\rightarrow$
+%Radio: 0.5 km.
+%\item
+%CQI $\rightarrow$
+%Método: Todo el ancho de banda y notificación periódica;
+%Período de medición: 1 ms.
+%\item
+%Movimiento del UE $\rightarrow$
+%Modelo de mobilidad: \textit{Random way-point};
+%Velocidad del UE: 30 km/h.
+%\item
+%Modelos de tráfico $\rightarrow$
+%Tipo de tráfico en tiempo real: H264, VoIP;
+%Flujos de mejor esfuerzo: búfer infinito.
+%\end{itemize}
+%\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Experimento propuesto (I)}
+
+\begin{itemize}
+\item Métricas: MT, PF, TTA y PF-PF.
+\item 19 celdas.
+\item 20 UE a 100 UE (aproximadamente, de 1 UE a 20 UE por celda).
+\item Ruta aleatoria.
+\item 30 km/h.
+\item Fuente de búfer infinito en el enlace descendente para cada UE.
+\item
+Duración de la simulación $\rightarrow$ 100 s.
+\item
+Detalles físicos $\rightarrow$
+Frecuencia portadora: 2GHz;
+Ancho de banda para DL: 10 MHz;
+Símbolos por TTI: 14;
+Longitud de subtrama: 1 ms;
+Subportadoras por RB: 12;
+Espaciado de subportadoras: 15 kHz;
+Esquema de reutilización de frecuencia: clústeres de cuatro celdas;
+Potencia de transmisión: 43 dBm uniformemente distribuidos entre subcanales;
+Modelo de propagación: Macrocelda urbana (UMa).
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Experimento propuesto (II)}
+
+\begin{itemize}
+\item
+Adaptación de enlace $\rightarrow$
+Modulación: QPSK, 16QAM y 64QAM con todas las tasas de codificación disponibles;
+Objetivo de BLER: $10^{-1}$.
+\item
+Control de encabezado $\rightarrow$
+RTP/UDP/IP con compresión ROCH: 3 bytes;
+MAC y RLC: 5 bytes;
+PDCP: 2 bytes;
+CRC: 3 bytes;
+PHY: 3 símbolos.
+\item
+Diseño de celda $\rightarrow$
+Radio: 0.5 km.
+\item
+CQI $\rightarrow$
+Método: Todo el ancho de banda y notificación periódica;
+Período de medición: 1 ms.
+\item
+Movimiento del UE $\rightarrow$
+Modelo de mobilidad: \textit{Random way-point};
+Velocidad del UE: 30 km/h.
+\item
+Modelos de tráfico $\rightarrow$
+Tipo de tráfico en tiempo real: H264, VoIP;
+Flujos de mejor esfuerzo: búfer infinito.
+\end{itemize}
+\end{frame}
+
+%% Diapositiva
+%\begin{frame}
+%\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Experimento realizado}
+%
+%\begin{itemize}
+%\item Una celda.
+%\item 1 UE a 20 UE.
+%\item 20 UE a 100 UE.
+%\item Tráfico de 100 Mbps en dirección DL en cada UE.
+%\item RMa, UMa.
+%\item Métricas: BET, EDF, FIFO, LWDF, MT, PF, RR.
+%\end{itemize}
+%
+%\begin{center}
+%\includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/n_ue_multi_sim.png}
+%
+%\includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/n_ue_multi_sim.png}
+%\end{center}
+%\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Experimento realizado (I)}
+
+\begin{itemize}
+\item Una celda.
+\item 1 UE a 20 UE.
+\item 20 UE a 100 UE.
+\item Tráfico de 100 Mbps en dirección DL en cada UE.
+\item RMa, UMa.
+\item Métricas: BET, EDF, FIFO, LWDF, MT, PF, RR.
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Experimento realizado (II)}
+
+\begin{center}
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/n_ue_multi_sim.png}
+
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/n_ue_multi_sim.png}
+\end{center}
+\end{frame}
+
+%% Diapositiva
+%\begin{frame}
+%\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Calidad del canal}
+%
+%$$
+%C = W \log_2 \left( 1 + \frac {S} {N} \right) [b/s] = 10 [MHz] \cdot \log_2 \left( 1 + 200 \right) = 76,511 [Mbps]
+%$$
+%
+%\begin{center}
+%\includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/sinr_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+%\includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/rsrp_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+%\includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/cqi_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+%\includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/sinr_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+%\includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/rsrp_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+%\includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/cqi_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+%\includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/mcs_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+%\includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/mcs_dl_3d_hist_all_ue_multi.png_cropped.png}
+%\end{center}
+%\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Calidad del canal (I)}
+
+$$
+C = W \log_2 \left( 1 + \frac {S} {N} \right) [b/s] = 10 [MHz] \cdot \log_2 \left( 1 + 200 \right) = 76,511 [Mbps]
+$$
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Calidad del canal (II)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/sinr_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Calidad del canal (III)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/rsrp_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Calidad del canal (IV)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/cqi_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Calidad del canal (V)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/sinr_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Calidad del canal (VI)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/rsrp_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Calidad del canal (VII)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/cqi_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Calidad del canal (VIII)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/mcs_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Calidad del canal (IX)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/mcs_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones}
+%
+% \begin{center}
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/dl_agg_throughput_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/dl_agg_throughput_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-199.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_uma_lento_muchos_1flujo_mt/5_6_21_50_52/ue/trajectory.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_muchos_1flujo/ue/dl_ave_throughput_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_muchos_1flujo/ue/dl_ave_throughput_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-200.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/dl_ave_throughput_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/dl_ave_throughput_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-200.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/dl_fairness_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/dl_fairness_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-201.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_rr/5_7_17_28_55/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_pf/5_7_17_33_56/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_mt/5_7_17_23_53/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_lwdf/5_7_17_18_52/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_fifo/5_7_17_3_47/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_edf/5_7_17_13_50/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_bet/5_7_17_8_49/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_uma_lento_muchos_1flujo_mt/5_6_21_52_33/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_uma_lento_muchos_1flujo_pf/5_6_22_1_9/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-202.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-203.png}
+% \end{center}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (I)}
+
+\begin{center}
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/dl_agg_throughput_multi_sim.png}
+
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/dl_agg_throughput_multi_sim.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (II)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-199.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (III)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_italianos_uma_lento_muchos_1flujo_mt/5_6_21_50_52/ue/trajectory.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (IV)}
+
+\begin{center}
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_rma_rapido_muchos_1flujo/ue/dl_ave_throughput_multi_sim.png}
+
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_uma_lento_muchos_1flujo/ue/dl_ave_throughput_multi_sim.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (V)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-200.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (VI)}
+
+\begin{center}
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/dl_ave_throughput_multi_sim.png}
+
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/dl_ave_throughput_multi_sim.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (VII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-200.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (VIII)}
+
+\begin{center}
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_rma_rapido_1flujo/ue/dl_fairness_multi_sim.png}
+
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_uma_lento_1flujo/ue/dl_fairness_multi_sim.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (IX)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-201.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (X)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_rr/5_7_17_28_55/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (XI)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_pf/5_7_17_33_56/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (XII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_mt/5_7_17_23_53/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (XIII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_lwdf/5_7_17_18_52/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (XIV)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_fifo/5_7_17_3_47/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (XV)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_edf/5_7_17_13_50/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (XVI)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_1flujo_bet/5_7_17_8_49/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (XVII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_uma_lento_muchos_1flujo_mt/5_6_21_52_33/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (XVIII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_uma_lento_muchos_1flujo_pf/5_6_22_1_9/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (XIX)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-202.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 1 - Prestaciones (XX)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-203.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Experimento propuesto}
+
+\begin{itemize}
+\item Métricas: M-LWDF, EXP/PF, \textit{EXP rule}, \textit{LOG rule}, FLS, PF.
+\item DL: un vídeo, una transmisión de VoIP y un flujo de mejor esfuerzo (datos).
+\item Resto de parámetros idénticos.
+\end{itemize}
+\end{frame}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Experimento realizado}
+%
+% \begin{itemize}
+% \item 1 UE a 20 UE.
+% \item Captura de tramas IP reales del mismo tipo de datos.
+% \item RMa, UMa.
+% \item Métricas: M-LWDF, PF, BET, EDF, FIFO, LWDF, MT, RR.
+% \end{itemize}
+%
+% \begin{center}
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_3flujo/ue/n_ue_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_3flujos/ue/n_ue_multi_sim.png}
+% \end{center}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Experimento realizado (I)}
+
+\begin{itemize}
+\item 1 UE a 20 UE.
+\item Captura de tramas IP reales del mismo tipo de datos.
+\item RMa, UMa.
+\item Métricas: M-LWDF, PF, BET, EDF, FIFO, LWDF, MT, RR.
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Experimento realizado (II)}
+
+\begin{center}
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_rma_rapido_3flujo/ue/n_ue_multi_sim.png}
+
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_uma_lento_3flujos/ue/n_ue_multi_sim.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Calidad del canal}
+
+\begin{itemize}
+\item Misma capacidad.
+\item Misma calidad de canal.
+\item Mismos valores de estado de canal (SINR, RSRP, CQI).
+\end{itemize}
+\end{frame}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones}
+%
+% \begin{center}
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_rr/8_5_7_11_59_13/ue/cdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_mt/5_7_12_13_24/ue/cdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_lwdf/5_7_11_42_49/ue/cdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_fifo/5_7_10_52_14/ue/cdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_edf/5_7_11_29_27/ue/cdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_bet/8_5_7_11_13_52/ue/cdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujo_pf/5_7_13_15_13/ue/cdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujo_mlwdf/5_7_13_25_37/ue/cdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-208.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_rma_rapido_3flujo/ue/dl_ave_throughput_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_italianos_uma_lento_3flujos/ue/dl_ave_throughput_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-211.png}
+% \end{center}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (I)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_rr/8_5_7_11_59_13/ue/cdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (II)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_mt/5_7_12_13_24/ue/cdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (III)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_lwdf/5_7_11_42_49/ue/cdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (IV)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_fifo/5_7_10_52_14/ue/cdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (V)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_edf/5_7_11_29_27/ue/cdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (VI)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujos_bet/8_5_7_11_13_52/ue/cdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (VII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujo_pf/5_7_13_15_13/ue/cdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (VIII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_italianos_rma_rapido_pocos_3flujo_mlwdf/5_7_13_25_37/ue/cdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (IX)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-208.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (X)}
+
+\begin{center}
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_rma_rapido_3flujo/ue/dl_ave_throughput_multi_sim.png}
+
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_italianos_uma_lento_3flujos/ue/dl_ave_throughput_multi_sim.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 2 - Experimento 2 - Prestaciones (XI)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_italianos/scheduling_italianos-211.png}
+\end{center}
+\end{frame}
+
+\subsection{Planificación de paquetes para URLLC}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{\textit{Packet scheduling} - Caso 3 - General}
+%
+% \begin{itemize}
+% \item Servicio URLLC de 5G.
+% \item Métricas más relevantes.
+% \item {
+% 	Metodología de nivel de sistema.
+% 	\begin{itemize}
+% 	\item Especificaciones de 3GPP para NR.
+% 	\item Despliegues con varias celdas.
+% 	\item Modelos de tráfico de usuario dinámico.
+% 	\item Modelos de canal en tres dimensiones.
+% 	\item Pila de protocolos de 5G NR.
+% 	\item Planificación de paquetes.
+% 	\item Adaptación de enlace.
+% 	\item HARQ.
+% 	\item MIMO en transmisión y en recepción.
+% 	\item etc.
+% 	\end{itemize}
+% }
+% \item Comparación de \textit{multi-cell scheduling} con \textit{distributed scheduling}.
+% \item Comparación de C-RAN con la forma convencional.
+% \item {
+% 	Nueva métrica: \textit{TP-Delay}
+% 	$$
+% 	m_{i, k}^{TP-Delay} = \left\lbrace
+% 	\begin{array}{lr}
+% 	d_{k}^i (t) \quad si \quad D_{HOL, i} \leq \mathsf{0.5 \quad ms} \\
+% 	D_{HOL, i} \cdot \frac {d_{k}^i (t)} { \psi } \quad si \quad D_{HOL, i} > \mathsf{0.5 \quad ms}
+% 	\end{array}
+% 	\right.
+% 	$$
+% }
+% \item {
+% 	Simulaciones:
+% 	\begin{itemize}
+% 	\item \textit{Caso de uso (VIII): packet scheduling (daneses)}
+% 	\end{itemize}
+% }
+% \end{itemize}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - General (I)}
+
+\begin{itemize}
+\item Servicio URLLC de 5G.
+\item Métricas más relevantes.
+\item {
+	Metodología de nivel de sistema.
+	\begin{itemize}
+	\item Especificaciones de 3GPP para NR.
+	\item Despliegues con varias celdas.
+	\item Modelos de tráfico de usuario dinámico.
+	\item Modelos de canal en tres dimensiones.
+	\item Pila de protocolos de 5G NR.
+	\item Planificación de paquetes.
+	\item Adaptación de enlace.
+	\item HARQ.
+	\item MIMO en transmisión y en recepción.
+	\item etc.
+	\end{itemize}
+}
+\item Comparación de \textit{multi-cell scheduling} con \textit{distributed scheduling}.
+\item Comparación de C-RAN con la forma convencional.
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - General (II)}
+
+\begin{itemize}
+\item {
+	Nueva métrica: \textit{TP-Delay}
+	$$
+	m_{i, k}^{TP-Delay} = \left\lbrace
+	\begin{array}{lr}
+	d_{k}^i (t) \quad si \quad D_{HOL, i} \leq \mathsf{0.5 \quad ms} \\
+	D_{HOL, i} \cdot \frac {d_{k}^i (t)} { \psi } \quad si \quad D_{HOL, i} > \mathsf{0.5 \quad ms}
+	\end{array}
+	\right.
+	$$
+}
+\item {
+	Simulaciones:
+	\begin{itemize}
+	\item \textit{Caso de uso (VIII): packet scheduling (daneses)}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Experimento propuesto}
+%
+% \begin{itemize}
+% \item Entorno $\rightarrow$
+% Macrocelda urbana (UMa);
+% RRH de tres sectores con separación de 500 m entre sitios;
+% 21 celdas.
+% \item Propagación $\rightarrow$
+% Modelo tridimensional de macrocelda urbana (UMa).
+% \item Portadora $\rightarrow$
+% 2 GHz;
+% FDD.
+% \item Numerología $\rightarrow$
+% Espaciado entre subportadoras: 15 kHz;
+% Tamaño de PRB: 12 subportadoras de 180 kHz;
+% PRB: 24 RE (cuatro RE están reservados para la transmisión de símbolos de referencia, 20 RE se usan para transmitir datos);
+% Ancho de banda: 10 MHz (50 PRB), 20 MHz (100 PRB).
+% \item Tamaño de TTI $\rightarrow$
+% 0.143 ms (\textit{minislot} de dos símbolos).
+% \item MIMO $\rightarrow$
+% Configuración (celda): Flujo único con bucle cerrado de $2 \times 2$ para usuario único (\textit{Rank-1});
+% Polarización (celda: polarización cuzada $+45 / -45$;
+% Antena del UE: Antena isotrópica 0/90;
+% Estimador: MMSE-IRC.
+% \item CSI $\rightarrow$
+% Período de notificación: 5 ms;
+% Latencia: 2 ms;
+% Mecanismo: Cada UE notifica su CSI a un número de hasta $Q$ celdas, las que mejor se perciben y que se encuentren en una ventana de potencia recibida de $W$ dB;
+% Casos: En escenario distribuido, $Q = 1$, en planificación centralizada, $Q = 2$ por defecto y $W = 10$ dB.
+% \item Modulación y codificación del canal de datos $\rightarrow$
+% De QPSK a 64-QAM, con las mismas tasas de codificación que LTE. Se usan turbocódigos..
+% \item Adaptación de enlace $\rightarrow$
+% Mecanismo: Selección dinámica de MCS;
+% Objetivo de BLER: 1\%.
+% \item HARQ $\rightarrow$
+% Mecanismo: HARQ asíncrono con combinación Chase;
+% Período: RTT de duración de un mínimo de 4 TTI.
+% \item Usuarios $\rightarrow$
+% Número: 2100, 4200;
+% Distribución: Uniformemente distribuidos en el área de la celda (100 ó 200 por celda, en promedio).
+% \item Servicio $\rightarrow$
+% URLLC.
+% \item Tráfico $\rightarrow$ En cada UE, tráfico de FTP3 en DL en forma de ráfagas de 50 bytes con distribución de Poisson.
+% \item Planificador $\rightarrow$
+% MT, PF, \textit{TP-Delay}.
+% \item Link-to-System (L2S) $\rightarrow$
+% Basado en SINR exponencial efectivo (EESM).
+% \end{itemize}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Experimento propuesto (I)}
+
+\begin{itemize}
+\item Entorno $\rightarrow$
+Macrocelda urbana (UMa);
+RRH de tres sectores con separación de 500 m entre sitios;
+21 celdas.
+\item Propagación $\rightarrow$
+Modelo tridimensional de macrocelda urbana (UMa).
+\item Portadora $\rightarrow$
+2 GHz;
+FDD.
+\item Numerología $\rightarrow$
+Espaciado entre subportadoras: 15 kHz;
+Tamaño de PRB: 12 subportadoras de 180 kHz;
+PRB: 24 RE (cuatro RE están reservados para la transmisión de símbolos de referencia, 20 RE se usan para transmitir datos);
+Ancho de banda: 10 MHz (50 PRB), 20 MHz (100 PRB).
+\item Tamaño de TTI $\rightarrow$
+0.143 ms (\textit{minislot} de dos símbolos).
+\item MIMO $\rightarrow$
+Configuración (celda): Flujo único con bucle cerrado de $2 \times 2$ para usuario único (\textit{Rank-1});
+Polarización (celda: polarización cuzada $+45 / -45$;
+Antena del UE: Antena isotrópica 0/90;
+Estimador: MMSE-IRC.
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Experimento propuesto (II)}
+
+\begin{itemize}
+\item CSI $\rightarrow$
+Período de notificación: 5 ms;
+Latencia: 2 ms;
+Mecanismo: Cada UE notifica su CSI a un número de hasta $Q$ celdas, las que mejor se perciben y que se encuentren en una ventana de potencia recibida de $W$ dB;
+Casos: En escenario distribuido, $Q = 1$, en planificación centralizada, $Q = 2$ por defecto y $W = 10$ dB.
+\item Modulación y codificación del canal de datos $\rightarrow$
+De QPSK a 64-QAM, con las mismas tasas de codificación que LTE. Se usan turbocódigos..
+\item Adaptación de enlace $\rightarrow$
+Mecanismo: Selección dinámica de MCS;
+Objetivo de BLER: 1\%.
+\item HARQ $\rightarrow$
+Mecanismo: HARQ asíncrono con combinación Chase;
+Período: RTT de duración de un mínimo de 4 TTI.
+\item Usuarios $\rightarrow$
+Número: 2100, 4200;
+Distribución: Uniformemente distribuidos en el área de la celda (100 ó 200 por celda, en promedio).
+\item Servicio $\rightarrow$
+URLLC.
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Experimento propuesto (III)}
+
+\begin{itemize}
+\item Tráfico $\rightarrow$ En cada UE, tráfico de FTP3 en DL en forma de ráfagas de 50 bytes con distribución de Poisson.
+\item Planificador $\rightarrow$
+MT, PF, \textit{TP-Delay}.
+\item Link-to-System (L2S) $\rightarrow$
+Basado en SINR exponencial efectivo (EESM).
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Experimento realizado}
+
+\begin{itemize}
+\item 100 UE y 200 UE.
+\item 0.035 Mbps en UL/DL en cada UE.
+\item métricas FIFO, BET, EDF, LWDF, MT, RR, PF, M-LWDF.
+\end{itemize}
+
+\begin{center}
+\includegraphics[height=2.8cm]{../comparaciones/scheduling_daneses_10mhz_3.5mbps_100ue/ue/n_ue_multi_sim.png}
+
+\includegraphics[height=2.8cm]{../comparaciones/scheduling_daneses_10mhz_3.5mbps_200ue/ue/n_ue_multi_sim.png}
+\end{center}
+\end{frame}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Calidad del canal}
+%
+% $$
+% C = W \log_2 \left( 1 + \frac {S} {N} \right) [b/s] = 10 [MHz] \cdot \log_2 \left( 1 + 200 \right) = 76,511 [Mbps]
+% $$
+%
+% \begin{center}
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_daneses_10mhz_3.5mbps_100ue/ue/sinr_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_daneses_10mhz_3.5mbps_100ue/ue/rsrp_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_daneses_10mhz_3.5mbps_100ue/ue/cqi_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_daneses_10mhz_3.5mbps_100ue/ue/mcs_dl_3d_hist_all_ue_multi.png_cropped.png}
+% \end{center}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Calidad del canal (I)}
+
+$$
+C = W \log_2 \left( 1 + \frac {S} {N} \right) [b/s] = 10 [MHz] \cdot \log_2 \left( 1 + 200 \right) = 76,511 [Mbps]
+$$
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Calidad del canal (II)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_daneses_10mhz_3.5mbps_100ue/ue/sinr_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Calidad del canal (III)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_daneses_10mhz_3.5mbps_100ue/ue/rsrp_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Calidad del canal (IV)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_daneses_10mhz_3.5mbps_100ue/ue/cqi_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Calidad del canal (V)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_daneses_10mhz_3.5mbps_100ue/ue/mcs_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC}
+%
+% \begin{center}
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_38_19/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_40_2/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_41_45/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_43_29/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_45_12/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_46_56/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_48_39/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_50_23/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_4_32/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_6_18/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_8_5/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_9_52/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_11_39/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_13_26/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_15_13/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_17_0/ue/ccdf_ildl.png_fixed.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_daneses/scheduling_daneses-003.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_daneses/scheduling_daneses-005.png}
+%
+% \includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_daneses/scheduling_daneses-009.png}
+% \end{center}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (I)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_38_19/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (II)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_40_2/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (III)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_41_45/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (IV)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_43_29/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (V)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_45_12/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (VI)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_46_56/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (VII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_48_39/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (VIII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_100ue/5_8_0_50_23/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (IX)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_4_32/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (X)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_6_18/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (XI)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_8_5/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (XII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_9_52/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (XIII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_11_39/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (XIV)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_13_26/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (XV)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_15_13/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (XVI)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_17_0/ue/ccdf_ildl.png_fixed.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (XVII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_daneses/scheduling_daneses-003.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (XVIII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_daneses/scheduling_daneses-005.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Latencia y URLLC (XIX)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../memoria/imagenes/scheduling_daneses/scheduling_daneses-009.png}
+\end{center}
+\end{frame}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC}
+%
+% \begin{center}
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_4_32/ue/edl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_6_18/ue/edl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_8_5/ue/edl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_9_52/ue/edl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_11_39/ue/edl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_13_26/ue/edl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_15_13/ue/edl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_17_0/ue/edl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_4_32/ue/ildl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_6_18/ue/ildl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_8_5/ue/ildl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_9_52/ue/ildl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_11_39/ue/ildl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_13_26/ue/ildl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_15_13/ue/ildl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_17_0/ue/ildl_instantaneous.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_4_32/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_6_18/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_8_5/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_9_52/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_11_39/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_13_26/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_15_13/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_17_0/mac/dl_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_4_32/mac/ul_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_6_18/mac/ul_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_8_5/mac/ul_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_9_52/mac/ul_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_11_39/mac/ul_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_13_26/mac/ul_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_15_13/mac/ul_throughput.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_17_0/mac/ul_throughput.png}
+% \end{center}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (I)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_4_32/ue/edl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (II)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_6_18/ue/edl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (III)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_8_5/ue/edl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (IV)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_9_52/ue/edl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (V)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_11_39/ue/edl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (VI)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_13_26/ue/edl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (VII)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_15_13/ue/edl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (VIII)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_17_0/ue/edl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (IX)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_4_32/ue/ildl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (X)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_6_18/ue/ildl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XI)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_8_5/ue/ildl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XII)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_9_52/ue/ildl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XIII)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_11_39/ue/ildl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XIV)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_13_26/ue/ildl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XV)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_15_13/ue/ildl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XVI)}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_17_0/ue/ildl_instantaneous.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XVII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_4_32/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XVIII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_6_18/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XIX)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_8_5/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XX)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_9_52/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXI)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_11_39/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_13_26/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXIII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_15_13/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXIV)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_17_0/mac/dl_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXV)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_4_32/mac/ul_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXVI)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_6_18/mac/ul_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXVII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_8_5/mac/ul_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXVIII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_9_52/mac/ul_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXIX)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_11_39/mac/ul_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXX)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_13_26/mac/ul_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXXI)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_15_13/mac/ul_throughput.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 3 - Experimento 1 - Otras prestaciones en URLLC (XXXII)}
+
+\begin{center}
+\includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_daneses_10mhz_3.5mbps_200ue/5_8_1_17_0/mac/ul_throughput.png}
+\end{center}
+\end{frame}
+
+\subsection{Comparación de métricas en \textit{FikoRE} y en \textit{5G-LENA/NS-3}}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 4 - General}
+
+\begin{itemize}
+\item Diseño del planificador.
+\item Módulos de NR de \textit{5G-LENA} con el simulador \textit{NS-3}.
+\item Nueva métrica: \textit{Optimized PF}.
+\item Distintas numerologías.
+\item {
+	Simulaciones:
+	\begin{itemize}
+	\item \textit{Caso de uso (IX): packet scheduling (indonesios)}
+	\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 4 - Experimento 1 - Experimento propuesto}
+
+\begin{itemize}
+\item 1 UE, 5 UE, 10 UE, 20 UE, 30 UE.
+\item Numerologías 0 y 4.
+\item Métricas: RR, MT, PF, \textit{Optimized PF}.
+\item
+Escenario $\rightarrow$ \textit{Urban Macro} (UMa).
+\item
+Modelo de canal $\rightarrow$ 3GPP, LoS.
+\item
+Ancho de banda para DL $\rightarrow$ 200 MHz.
+\item
+Ancho de banda para UL $\rightarrow$ 100 MHz.
+\item
+Portadora $\rightarrow$ 28 GHz.
+\item
+Altura de la gNB $\rightarrow$ 10 m.
+\item
+Altura del UE $\rightarrow$ 1.5 m.
+\item
+Distancia $\rightarrow$ 10 m.
+\item
+Desvanecimiento lento $\rightarrow$ Deshabilitado.
+\item
+MCS $\rightarrow$ 28.
+\item
+Latencia de codificación $\rightarrow$ 2 \textit{slots}.
+\end{itemize}
+\end{frame}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{\textit{Packet scheduling} - Caso 4 - Experimento 1 - Experimento realizado}
+%
+% \begin{itemize}
+% \item Numerología 0.
+% \item Desvanecimiento lento.
+% \item 150 Mbps en UL/DL para cada UE.
+% \item Movimiento circular.
+% \item Métricas: FIFO, BET, EDF, LWDF, MT, RR, PF.
+% \item 1 UE, 5 UE, 10 UE, 20 UE, 30 UE.
+% \end{itemize}
+%
+% \begin{center}
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_indonesios_mu0_sin_prioridades/ue/n_ue_multi_sim.png}
+%
+% \includegraphics[height=5.0cm]{../computos_y_graficas/scheduling_indonesios_mu0_bet/5_7_23_27_55/ue/trajectory.png}
+% \end{center}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 4 - Experimento 1 - Experimento realizado (I)}
+
+\begin{itemize}
+\item Numerología 0.
+\item Desvanecimiento lento.
+\item 150 Mbps en UL/DL para cada UE.
+\item Movimiento circular.
+\item Métricas: FIFO, BET, EDF, LWDF, MT, RR, PF.
+\item 1 UE, 5 UE, 10 UE, 20 UE, 30 UE.
+\end{itemize}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 4 - Experimento 1 - Experimento realizado (II)}
+
+\begin{center}
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_indonesios_mu0_sin_prioridades/ue/n_ue_multi_sim.png}
+
+\includegraphics[height=3.5cm]{../computos_y_graficas/scheduling_indonesios_mu0_bet/5_7_23_27_55/ue/trajectory.png}
+\end{center}
+\end{frame}
+
+% % Diapositiva
+% \begin{frame}
+% \frametitle{\textit{Packet scheduling} - Caso 4 - Experimento 1 - Calidad del canal}
+%
+% $$
+% C = W \log_2 \left( 1 + \frac {S} {N} \right) [b/s] = \left\lbrace \begin{array}{lr}
+% 100 [MHz] \cdot \log_2 \left( 1 + 200 \right) = 765.11 [Mbps] \quad \mathtt{(UL)} \\
+% 200 [MHz] \cdot \log_2 \left( 1 + 200 \right) = 1.5302 [Gbps] \quad \mathtt{(DL)}
+% \end{array}
+% \right.
+% $$
+%
+% \begin{center}
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_indonesios_mu0_sin_prioridades/ue/cqi_dl_3d_hist_all_ue_multi.png_cropped.png}
+%
+% \includegraphics[height=5.0cm]{../comparaciones/scheduling_indonesios_mu0_sin_prioridades/ue/mcs_dl_3d_hist_all_ue_multi.png_cropped.png}
+% \end{center}
+% \end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 4 - Experimento 1 - Calidad del canal}
+
+$$
+C = W \log_2 \left( 1 + \frac {S} {N} \right) [b/s] = \left\lbrace \begin{array}{lr}
+100 [MHz] \cdot \log_2 \left( 1 + 200 \right) = 765.11 [Mbps] \quad \mathtt{(UL)} \\
+200 [MHz] \cdot \log_2 \left( 1 + 200 \right) = 1.5302 [Gbps] \quad \mathtt{(DL)}
+\end{array}
+\right.
+$$
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 4 - Experimento 1 - Calidad del canal}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_indonesios_mu0_sin_prioridades/ue/cqi_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 4 - Experimento 1 - Calidad del canal}
+
+\begin{center}
+\includegraphics[height=7.0cm]{../comparaciones/scheduling_indonesios_mu0_sin_prioridades/ue/mcs_dl_3d_hist_all_ue_multi.png_cropped.png}
+\end{center}
+\end{frame}
+
+% Diapositiva
+\begin{frame}
+\frametitle{\textit{Packet scheduling} - Caso 4 - Experimento 1 - Prestaciones}
+
+\begin{center}
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_indonesios_mu0_sin_prioridades/ue/dl_agg_throughput_multi_sim.png}
+
+\includegraphics[height=3.5cm]{../comparaciones/scheduling_indonesios_mu0_sin_prioridades/ue/ul_agg_throughput_multi_sim.png}
+\end{center}
+
+El experimento no es válido.
+\end{frame}
+
+
+
+
+
 \end{document}
 
 % =============================================================
